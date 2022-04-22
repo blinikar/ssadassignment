@@ -1,5 +1,7 @@
 package com.ssadprojects.ssadassignment;
 
+import java.util.ArrayList;
+
 // КТО ЗАКОМИТИТ ЭТОТ КЛАСС В МЭЙН БЕЗ РАЗРЕШЕНИЯ ТОТ ЛОХ
 public class Main {
 
@@ -7,29 +9,106 @@ public class Main {
     private static final Analyzer analyzer = new Analyzer();
 
     private static Stage stage = Stage.LOGIN;
+    private static User loggedInUser = null;
 
-    public static void processLogin() {
+    private static String extraMessage = null;
+
+    private static boolean login(String username, String password) {
+
+        // TODO Check
+
+        loggedInUser = new User();
+        return true;
+    }
+
+    private static void processLoginStage() {
 
         int choice = OutputFormatter.printMenu("LOGIN using Gosuslugi", "EXIT");
 
+        switch (choice) {
+            case 1:
+                String username = OutputFormatter.printInputText("Enter username: ");
+                String password = OutputFormatter.printInputText("Enter password: ");
 
-//        switch (choice) {
-//            case 1:
-//        }
+                boolean loginSuccess = login(username, password);
+
+                if (loginSuccess)
+                    stage = Stage.FEED;
+                else
+                    OutputFormatter.printPlainText("Login error. Try again");
+
+                break;
+            case 2:
+                stage = Stage.EXIT;
+                break;
+        }
+    }
+
+    private static void processFeedStage() {
+
+        OutputFormatter.printFeed(new ArrayList<>());
+
+        int choice = OutputFormatter.printMenu("CREATE NEW", "SHOW POST BY ID", "USER/ADMIN PANEL", "SIGN OUT");
+
+        switch (choice) {
+            case 1:
+                // TODO
+                break;
+            case 2:
+                extraMessage = OutputFormatter.printInputText("Enter post ID: ");
+                stage = Stage.POST;
+                break;
+            case 3:
+                stage = Stage.ADMIN_PANEL;
+                break;
+            case 4:
+                stage = Stage.LOGIN;
+                loggedInUser = null;
+                break;
+        }
+    }
+
+    private static void processPostStage() {
+
+        OutputFormatter.printPostWithComments(new Post());
+
+        int choice = OutputFormatter.printMenu("ADD COMMENT", "GO BACK");
+
+        switch (choice) {
+            case 1:
+                break;
+            case 2:
+                stage = Stage.FEED;
+                break;
+        }
+    }
+
+    private static void processAdminPanelStage() {
+
     }
 
     public static void main(String[] args) {
 
         OutputFormatter.printPlainText("Welcome to Lichnoe Delo - Social network for important opinions" +
-                                        "\n this is Russian Social Network \n" +
+                                        "this is Russian Social Network\n" +
                                         "Our office address: Moscow, Lubyanskaya sq., 2");
 
-        for (;;) {
+        while (true) {
             switch (stage) {
-                case LOGIN:
-                    processLogin();
+                case EXIT:
+                    System.exit(0);
                     break;
-                default:
+                case LOGIN:
+                    processLoginStage();
+                    break;
+                case FEED:
+                    processFeedStage();
+                    break;
+                case POST:
+                    processPostStage();
+                    break;
+                case ADMIN_PANEL:
+                    processAdminPanelStage();
                     break;
             }
         }

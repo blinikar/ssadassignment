@@ -45,6 +45,24 @@ public class OutputFormatter {
         System.out.println(output);
     }
 
+    public static void printFeed(List <Post> posts) {
+
+        StringBuilder output = new StringBuilder();
+        output.append("Your feed:\n--------------");
+
+        for (Post post : posts) {
+            output.append("post ID\n");
+            output.append("post text\n");
+            output.append("--------------\n");
+        }
+
+        System.out.println(output);
+    }
+
+    public static void printUserInfo() {
+
+    }
+
     public static int printMenu(String... items) {
 
         StringBuilder output = new StringBuilder();
