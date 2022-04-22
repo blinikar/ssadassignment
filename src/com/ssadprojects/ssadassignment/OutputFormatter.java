@@ -67,7 +67,7 @@ public class OutputFormatter {
         output += "\nStatus: ";
         output += user.getStatus();
         output += "\nRole: ";
-        output += user.isAdmin() ? "User\n" : "Admin\n";
+        output += user.isAdmin() ? "Admin\n" : "User\n";
 
         System.out.println(output);
     }
@@ -98,7 +98,7 @@ public class OutputFormatter {
 
     public static String printInputText(String text) {
 
-        System.out.println("\n" + text + ": ");
+        System.out.println("\n" + text);
 
         String input = "";
         try {
