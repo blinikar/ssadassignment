@@ -3,7 +3,6 @@ package com.ssadprojects.ssadassignment;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
 import java.util.List;
 
 public class OutputFormatter {
@@ -12,31 +11,21 @@ public class OutputFormatter {
 
     public static void printPostWithComments(Post post) {
 
-        String postText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod " +
-                " tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim " +
-                " veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea " +
-                "commodo consequat.";
-
-        List<String> comments = new ArrayList<>();
-
-        Double postRating = 0.0;
-        String postAuthor = "@" + "blinikar";
-
         StringBuilder output = new StringBuilder();
-        output.append(postText);
+        output.append(post.getText());
 
-        output.append("\n\nPost by ").append(postAuthor);
-        output.append("\nPost rating ").append(postRating);
+        output.append("\n\nPost by @").append(post.getAuthorUsername());
+        output.append("\nPost rating ").append(post.getRating());
         output.append("\nComments: ");
 
         output.append("\n| --------------\n");
 
-        if (comments.isEmpty()) {
+        if (post.getComments().isEmpty()) {
             output.append("| No comments");
             output.append("\n| --------------\n");
         }
 
-        for (String comment : comments) {
+        for (String comment : post.getComments()) {
             output.append("| ");
             output.append(comment);
             output.append("\n| --------------\n");
@@ -48,12 +37,13 @@ public class OutputFormatter {
     public static void printFeed(List <Post> posts) {
 
         StringBuilder output = new StringBuilder();
-        output.append("Your feed:\n--------------");
+        output.append("Your feed:\n--------------\n");
 
         for (Post post : posts) {
-            output.append("post ID\n");
-            output.append("post text\n");
-            output.append("--------------\n");
+            output.append(post.getId());
+            output.append("\n");
+            output.append(post.getText());
+            output.append("\n--------------\n");
         }
 
         System.out.println(output);
@@ -64,6 +54,8 @@ public class OutputFormatter {
         String output = "\nUSER INFO: \n\n";
 
         output += user.getUsername();
+        output += "\nPhoto: ";
+        output += user.getPhotoURL();
         output += "\nStatus: ";
         output += user.getStatus();
         output += "\nRole: ";

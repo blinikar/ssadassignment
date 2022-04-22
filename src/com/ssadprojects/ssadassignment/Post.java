@@ -8,11 +8,17 @@ public class Post {
     private final Integer id;
     private Double rating = 0.0;
     private final List<String> comments = new ArrayList<>();
-    private String text;
+    private final String text;
+    private final String authorUsername;
 
-    public Post(Integer id, String text) {
+    public Post(Integer id, String text, String authorUsername) {
         this.id = id;
         this.text = text;
+        this.authorUsername = authorUsername;
+    }
+
+    public String getAuthorUsername() {
+        return authorUsername;
     }
 
     public Integer getId() {
@@ -31,19 +37,11 @@ public class Post {
         return comments;
     }
 
-    public String getCommentByOrderNumber(int index){
-        return comments.get(index);
-    }
-
-    public int getAmountOfComments(){
-        return comments.size();
+    public void addComment(String text) {
+        comments.add(text);
     }
 
     public String getText() {
         return text;
-    }
-
-    public void setText(String text) {
-        this.text = text;
     }
 }

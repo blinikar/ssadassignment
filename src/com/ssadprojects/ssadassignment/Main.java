@@ -1,6 +1,7 @@
 package com.ssadprojects.ssadassignment;
 
-import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
 
 // КТО ЗАКОМИТИТ ЭТОТ КЛАСС В МЭЙН БЕЗ РАЗРЕШЕНИЯ ТОТ ЛОХ
 public class Main {
@@ -55,13 +56,17 @@ public class Main {
 
     private static void processFeedStage() {
 
-        OutputFormatter.printFeed(new ArrayList<>());
+        List<Post> posts = database.getPosts();
+
+        OutputFormatter.printFeed(posts); // TODO Analyzer
 
         int choice = OutputFormatter.printMenu("CREATE NEW", "SHOW POST BY ID", "USER/ADMIN PANEL", "SIGN OUT");
 
         switch (choice) {
             case 1:
-                // TODO
+                String newPostText = OutputFormatter.printInputText("Enter post text: ");
+                int newPostId = posts.size();
+                database.addPost(new Post(newPostId, newPostText, loggedInUser.getUsername()));
                 break;
             case 2:
                 extraMessage = OutputFormatter.printInputText("Enter post ID: ");
@@ -77,14 +82,19 @@ public class Main {
         }
     }
 
-    private static void processPostStage(Integer id) {
+    private static void processPostStage() {
 
-        OutputFormatter.printPostWithComments();
+        Post post = database.getPostByID(Integer.parseInt(extraMessage));
+
+        OutputFormatter.printPostWithComments(post);
 
         int choice = OutputFormatter.printMenu("ADD COMMENT", "GO BACK");
 
         switch (choice) {
             case 1:
+                String newCommentText = OutputFormatter.printInputText("Enter comment text: ");
+                post.addComment(newCommentText);
+                // TODO Analyzer
                 break;
             case 2:
                 stage = Stage.FEED;
@@ -116,7 +126,11 @@ public class Main {
                 stage = Stage.FEED;
                 break;
             case 4:
-                // TODO
+                String newWordText = OutputFormatter.printInputText("Enter new Word: ");
+                OutputFormatter.printPlainText("Word moods: GOOD, BAD");
+                String newWordStatus = OutputFormatter.printInputText("Enter word mood: ");
+
+                database.addWord(new Word(newWordText, Mood.parseMood(newWordStatus.toUpperCase(Locale.ROOT))));
                 break;
         }
     }

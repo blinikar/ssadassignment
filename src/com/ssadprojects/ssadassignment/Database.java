@@ -18,9 +18,11 @@ public class Database {
     }
 
     public Post getPostByID(Integer id) {
+
         for (Post post : posts) {
-            if (post.get)
+            if (post.getId().equals(id)) return post;
         }
+        return null;
     }
 
     public void addUser(User user) {
