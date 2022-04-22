@@ -1,20 +1,24 @@
 package com.ssadprojects.ssadassignment;
 
+
 import java.util.ArrayList;
+import java.util.List;
 
 public class User {
 
-    final private String username;
-
-    private String password;
+    private final String username;
+    private final String password;
 
     private String photoURL = "";
-
-    private ArrayList<Post> posts = new ArrayList<>();
-
     private String status = "";
 
+    private List<Post> posts = new ArrayList<>();
+    private boolean isAdmin = false;
+
     public User(String username, String password) {
+
+        if (username.equals("admin")) isAdmin = true;
+
         this.username = username;
         this.password = password;
     }
@@ -23,8 +27,8 @@ public class User {
         return username;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public String getPassword() {
+        return password;
     }
 
     public String getPhotoURL() {
@@ -35,12 +39,16 @@ public class User {
         this.photoURL = photoURL;
     }
 
-    public ArrayList<Post> getPosts() {
+    public List<Post> getPosts() {
         return posts;
     }
 
-    public void setPosts(ArrayList<Post> posts) {
+    public void setPosts(List<Post> posts) {
         this.posts = posts;
+    }
+
+    public boolean isAdmin() {
+        return isAdmin;
     }
 
     public String getStatus() {
@@ -55,7 +63,4 @@ public class User {
         this.posts.add(post);
     }
 
-    public boolean validatePassword(String password){
-        return this.password.equals(password);
-    }
 }

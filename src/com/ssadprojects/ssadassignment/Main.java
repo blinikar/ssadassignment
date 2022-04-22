@@ -13,12 +13,14 @@ public class Main {
 
     private static String extraMessage = null;
 
-    private static boolean login(String username, String password) {
+    private static boolean login(String username, String password, User user) {
 
-        // TODO Check
+        if (user.getUsername().equals(username) && user.getPassword().equals(password)) {
+            loggedInUser = user;
+            return true;
+        }
 
-        loggedInUser = new User();
-        return true;
+        return false;
     }
 
     private static void processLoginStage() {
@@ -30,7 +32,7 @@ public class Main {
                 String username = OutputFormatter.printInputText("Enter username: ");
                 String password = OutputFormatter.printInputText("Enter password: ");
 
-                boolean loginSuccess = login(username, password);
+                boolean loginSuccess = login(username, password, new User("admin", "admin"));
 
                 if (loginSuccess)
                     stage = Stage.FEED;
@@ -84,7 +86,32 @@ public class Main {
     }
 
     private static void processAdminPanelStage() {
+        OutputFormatter.printPlainText("You're logged in");
+        OutputFormatter.printUserInfo(loggedInUser);
 
+        int choice;
+        if (loggedInUser.isAdmin()) {
+            choice = OutputFormatter.printMenu("CHANGE STATUS", "CHANGE PHOTO", "GO BACK", "ADD WORD");
+        } else {
+            choice = OutputFormatter.printMenu("CHANGE STATUS", "CHANGE PHOTO", "GO BACK");
+        }
+
+        switch (choice) {
+            case 1:
+                String newStatus = OutputFormatter.printInputText("Enter new Status: ");
+                loggedInUser.setStatus(newStatus);
+                break;
+            case 2:
+                String newPhoto = OutputFormatter.printInputText("Enter new Photo: ");
+                loggedInUser.setPhotoURL(newPhoto);
+                break;
+            case 3:
+                stage = Stage.FEED;
+                break;
+            case 4:
+                // TODO
+                break;
+        }
     }
 
     public static void main(String[] args) {

@@ -59,8 +59,17 @@ public class OutputFormatter {
         System.out.println(output);
     }
 
-    public static void printUserInfo() {
+    public static void printUserInfo(User user) {
 
+        String output = "\nUSER INFO: \n\n";
+
+        output += user.getUsername();
+        output += "\nStatus: ";
+        output += user.getStatus();
+        output += "\nRole: ";
+        output += user.isAdmin() ? "User\n" : "Admin\n";
+
+        System.out.println(output);
     }
 
     public static int printMenu(String... items) {
