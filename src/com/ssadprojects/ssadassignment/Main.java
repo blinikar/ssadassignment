@@ -1,49 +1,37 @@
 package com.ssadprojects.ssadassignment;
 
-import java.util.ArrayList;
-import java.util.List;
-
 // КТО ЗАКОМИТИТ ЭТОТ КЛАСС В МЭЙН БЕЗ РАЗРЕШЕНИЯ ТОТ ЛОХ
 public class Main {
 
-    Database database = new Database();
+    private static final Database database = new Database();
+    private static final Analyzer analyzer = new Analyzer();
 
-    public static void showPostWithComments(Post post) {
+    private static Stage stage = Stage.LOGIN;
 
-        String postText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod " +
-                    " tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim " +
-                    " veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea " +
-                    "commodo consequat.";
+    public static void processLogin() {
 
-        List<String> comments = new ArrayList<>();
+        int choice = OutputFormatter.printMenu("LOGIN using Gosuslugi", "EXIT");
 
-        Double postRating = 0.0;
-        String postAuthor = "@" + "blinikar";
 
-        StringBuilder output = new StringBuilder();
-        output.append(postText);
-
-        output.append("\n\nPost by ").append(postAuthor);
-        output.append("\nPost rating ").append(postRating);
-        output.append("\nComments: ");
-
-        output.append("\n| --------------\n");
-
-        if (comments.isEmpty()) {
-            output.append("| No comments");
-            output.append("\n| --------------\n");
-        }
-
-        for (String comment : comments) {
-            output.append("| ");
-            output.append(comment);
-            output.append("\n| --------------\n");
-        }
-
-        System.out.println(output.toString());
+//        switch (choice) {
+//            case 1:
+//        }
     }
 
     public static void main(String[] args) {
-        showPostWithComments(new Post());
+
+        OutputFormatter.printPlainText("Welcome to Lichnoe Delo - Social network for important opinions" +
+                                        "\n this is Russian Social Network \n" +
+                                        "Our office address: Moscow, Lubyanskaya sq., 2");
+
+        for (;;) {
+            switch (stage) {
+                case LOGIN:
+                    processLogin();
+                    break;
+                default:
+                    break;
+            }
+        }
     }
 }
