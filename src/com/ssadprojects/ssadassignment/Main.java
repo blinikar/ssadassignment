@@ -77,9 +77,9 @@ public class Main {
         }
     }
 
-    private static void processPostStage() {
+    private static void processPostStage(Integer id) {
 
-        OutputFormatter.printPostWithComments(new Post());
+        OutputFormatter.printPostWithComments();
 
         int choice = OutputFormatter.printMenu("ADD COMMENT", "GO BACK");
 

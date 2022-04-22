@@ -1,15 +1,22 @@
 package com.ssadprojects.ssadassignment;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Post {
 
+    private final Integer id;
     private Double rating = 0.0;
-    private ArrayList<String> comments = new ArrayList<>();
+    private final List<String> comments = new ArrayList<>();
     private String text;
 
-    public Post(String text) {
+    public Post(Integer id, String text) {
+        this.id = id;
         this.text = text;
+    }
+
+    public Integer getId() {
+        return id;
     }
 
     public Double getRating() {
@@ -20,7 +27,7 @@ public class Post {
         this.rating = rating;
     }
 
-    public ArrayList<String> getComments() {
+    public List<String> getComments() {
         return comments;
     }
 

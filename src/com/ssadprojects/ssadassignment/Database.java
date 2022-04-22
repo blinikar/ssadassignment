@@ -17,6 +17,12 @@ public class Database {
         return null;
     }
 
+    public Post getPostByID(Integer id) {
+        for (Post post : posts) {
+            if (post.get)
+        }
+    }
+
     public void addUser(User user) {
         users.add(user);
     }
