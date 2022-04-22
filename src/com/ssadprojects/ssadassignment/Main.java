@@ -13,10 +13,17 @@ public class Main {
 
     private static String extraMessage = null;
 
-    private static boolean login(String username, String password, User user) {
+    private static boolean login(String username, String password) {
 
-        if (user.getUsername().equals(username) && user.getPassword().equals(password)) {
-            loggedInUser = user;
+        User foundUser = database.getUserByUsername(username);
+
+        if (foundUser == null) {
+            foundUser = new User(username, password);
+            database.addUser(foundUser);
+        }
+
+        if (foundUser.getPassword().equals(password)) {
+            loggedInUser = foundUser;
             return true;
         }
 
@@ -32,7 +39,7 @@ public class Main {
                 String username = OutputFormatter.printInputText("Enter username: ");
                 String password = OutputFormatter.printInputText("Enter password: ");
 
-                boolean loginSuccess = login(username, password, new User("admin", "admin"));
+                boolean loginSuccess = login(username, password);
 
                 if (loginSuccess)
                     stage = Stage.FEED;
