@@ -16,21 +16,34 @@ public class Main {
                     "commodo consequat.";
 
         List<String> comments = new ArrayList<>();
-        comments.add("Comment 1");
-        comments.add("Comment 2");
-        comments.add("Comment 3");
-        comments.add("Comment 4");
-        comments.add("Comment 5");
 
-        StringBuilder output = new StringBuilder("--------------\n");
+        Double postRating = 0.0;
+        String postAuthor = "@" + "blinikar";
+
+        StringBuilder output = new StringBuilder();
         output.append(postText);
 
-        for (String comment : comments) {
-            output.append(comment);
+        output.append("\n\nPost by ").append(postAuthor);
+        output.append("\nPost rating ").append(postRating);
+        output.append("\nComments: ");
+
+        output.append("\n| --------------\n");
+
+        if (comments.isEmpty()) {
+            output.append("| No comments");
+            output.append("\n| --------------\n");
         }
+
+        for (String comment : comments) {
+            output.append("| ");
+            output.append(comment);
+            output.append("\n| --------------\n");
+        }
+
+        System.out.println(output.toString());
     }
 
     public static void main(String[] args) {
-    // write your code here
+        showPostWithComments(new Post());
     }
 }
