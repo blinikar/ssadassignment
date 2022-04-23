@@ -1,9 +1,10 @@
 package com.ssadprojects.ssadassignment;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Post {
+public class Post implements Serializable {
 
     private final Integer id;
     private Double rating = 0.0;

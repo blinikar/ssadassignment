@@ -1,9 +1,11 @@
 package com.ssadprojects.ssadassignment;
 
-public class Word {
+import java.io.Serializable;
 
-    private String text;
-    private Mood mood;
+public class Word implements Serializable {
+
+    private final String text;
+    private final Mood mood;
 
     public Word(String text, Mood mood) {
         this.text = text;

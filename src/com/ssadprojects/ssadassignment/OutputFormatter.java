@@ -80,7 +80,12 @@ public class OutputFormatter {
 
         System.out.println(output);
 
-        return Integer.parseInt(printInputText("Enter number: "));
+        int choice;
+        do {
+            choice = Integer.parseInt(printInputText("Enter number: "));
+        } while (!(choice > 0 && choice <= items.length));
+
+        return choice;
     }
 
     public static void printPlainText(String text) {

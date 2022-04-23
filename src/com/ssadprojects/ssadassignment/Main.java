@@ -1,5 +1,6 @@
 package com.ssadprojects.ssadassignment;
 
+import java.io.*;
 import java.util.List;
 import java.util.Locale;
 
@@ -137,7 +138,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        OutputFormatter.printPlainText("Welcome to Lichnoe Delo - Social network for important opinions" +
+        OutputFormatter.printPlainText("Welcome to Lichnoe Delo - Social network for important opinions " +
                                         "this is Russian Social Network\n" +
                                         "Our office address: Moscow, Lubyanskaya sq., 2");
 
