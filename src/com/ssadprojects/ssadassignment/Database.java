@@ -94,7 +94,7 @@ public class Database implements Serializable {
         }
     }
 
-    private void dataBaseStateSave() {
+    public void dataBaseStateSave() {
         try {
             FileOutputStream fileOut = new FileOutputStream("database.ser");
             ObjectOutputStream out = new ObjectOutputStream(fileOut);

@@ -1,6 +1,5 @@
 package com.ssadprojects.ssadassignment;
 
-import java.io.*;
 import java.util.List;
 import java.util.Locale;
 
@@ -59,7 +58,7 @@ public class Main {
 
         List<Post> posts = database.getPosts();
 
-        OutputFormatter.printFeed(posts); // TODO Analyzer
+        OutputFormatter.printFeed(analyzer.getFeed(posts));
 
         int choice = OutputFormatter.printMenu("CREATE NEW", "SHOW POST BY ID", "USER/ADMIN PANEL", "SIGN OUT");
 
@@ -67,7 +66,9 @@ public class Main {
             case 1:
                 String newPostText = OutputFormatter.printInputText("Enter post text: ");
                 int newPostId = posts.size();
-                database.addPost(new Post(newPostId, newPostText, loggedInUser.getUsername()));
+                Post newPost = new Post(newPostId, newPostText, loggedInUser.getUsername());
+                newPost.setRating(analyzer.analyze(newPost, database.getWords()));
+                database.addPost(newPost);
                 break;
             case 2:
                 extraMessage = OutputFormatter.printInputText("Enter post ID: ");
@@ -95,7 +96,8 @@ public class Main {
             case 1:
                 String newCommentText = OutputFormatter.printInputText("Enter comment text: ");
                 post.addComment(newCommentText);
-                // TODO Analyzer
+                post.setRating(analyzer.analyze(post, database.getWords()));
+                database.dataBaseStateSave();
                 break;
             case 2:
                 stage = Stage.FEED;

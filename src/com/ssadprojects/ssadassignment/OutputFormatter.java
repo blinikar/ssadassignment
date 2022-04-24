@@ -76,8 +76,6 @@ public class OutputFormatter {
             output.append("\n");
         }
 
-        output.append("\n");
-
         System.out.println(output);
 
         int choice;
