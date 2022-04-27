@@ -4,6 +4,9 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Database class for store all data
+ */
 public class Database implements Serializable {
 
     private List<Post> posts = new ArrayList<>();
@@ -14,6 +17,11 @@ public class Database implements Serializable {
         dataBaseInit();
     }
 
+    /**
+     * Search user by username in DB
+     * @param username username to search
+     * @return found user, or null
+     */
     public User getUserByUsername(String username) {
 
         for (User user : users) {
@@ -22,6 +30,11 @@ public class Database implements Serializable {
         return null;
     }
 
+    /**
+     * Search post by postID in DB
+     * @param id id to search
+     * @return found post, or null
+     */
     public Post getPostByID(Integer id) {
 
         for (Post post : posts) {
@@ -72,6 +85,9 @@ public class Database implements Serializable {
         dataBaseStateSave();
     }
 
+    /**
+     * Starting up a database and deserialization of database file if it is exists
+     */
     private void dataBaseInit() {
 
         Database deserializedDB;
@@ -94,6 +110,9 @@ public class Database implements Serializable {
         }
     }
 
+    /**
+     * Saving state of database, should call if state of some objects was changed
+     */
     public void dataBaseStateSave() {
         try {
             FileOutputStream fileOut = new FileOutputStream("database.ser");
