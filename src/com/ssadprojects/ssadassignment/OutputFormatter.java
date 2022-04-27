@@ -34,6 +34,18 @@ public class OutputFormatter {
         System.out.println(output);
     }
 
+    public static void printWords(List<Word> words) {
+
+        StringBuilder output = new StringBuilder();
+        output.append("Words:\n");
+
+        for (Word word : words) {
+            output.append(word.getText()).append(" - ").append(word.getMood()).append("\n");
+        }
+
+        System.out.println(output);
+    }
+
     public static void printFeed(List <Post> posts) {
 
         StringBuilder output = new StringBuilder();

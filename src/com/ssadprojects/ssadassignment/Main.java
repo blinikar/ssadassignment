@@ -3,7 +3,7 @@ package com.ssadprojects.ssadassignment;
 import java.util.List;
 import java.util.Locale;
 
-// КТО ЗАКОМИТИТ ЭТОТ КЛАСС В МЭЙН БЕЗ РАЗРЕШЕНИЯ ТОТ ЛОХ
+
 public class Main {
 
     private static final Database database = new Database();
@@ -111,6 +111,7 @@ public class Main {
 
         int choice;
         if (loggedInUser.isAdmin()) {
+            OutputFormatter.printWords(database.getWords());
             choice = OutputFormatter.printMenu("CHANGE STATUS", "CHANGE PHOTO", "GO BACK", "ADD WORD");
         } else {
             choice = OutputFormatter.printMenu("CHANGE STATUS", "CHANGE PHOTO", "GO BACK");
@@ -136,6 +137,7 @@ public class Main {
                 database.addWord(new Word(newWordText, Mood.parseMood(newWordStatus.toUpperCase(Locale.ROOT))));
                 break;
         }
+        database.dataBaseStateSave();
     }
 
     public static void main(String[] args) {
@@ -145,6 +147,7 @@ public class Main {
                                         "Our office address: Moscow, Lubyanskaya sq., 2");
 
         while (true) {
+
             switch (stage) {
                 case EXIT:
                     System.exit(0);
