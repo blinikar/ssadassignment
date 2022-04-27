@@ -149,6 +149,7 @@ public class Client {
 
             switch (stage) {
                 case EXIT:
+                    OutputFormatter.printPlainText("Goodbye");
                     System.exit(0);
                     break;
                 case LOGIN:
