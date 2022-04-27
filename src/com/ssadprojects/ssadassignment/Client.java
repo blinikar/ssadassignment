@@ -13,6 +13,40 @@ public class Client {
 
     private static String extraMessage = null;
 
+    /**
+     * Start program function. Choose a stage and calls a function for servicing client
+     *
+     * @param args arguments for program start (no args)
+     */
+    public static void main(String[] args) {
+
+        OutputFormatter.printPlainText("Welcome to Lichnoe Delo - Social network for important opinions " +
+                "this is Russian Social Network\n" +
+                "Our office address: Moscow, Lubyanskaya sq., 2");
+
+        while (true) {
+
+            switch (stage) {
+                case EXIT:
+                    OutputFormatter.printPlainText("Goodbye");
+                    System.exit(0);
+                    break;
+                case LOGIN:
+                    processLoginStage();
+                    break;
+                case FEED:
+                    processFeedStage();
+                    break;
+                case POST:
+                    processPostStage();
+                    break;
+                case ADMIN_PANEL:
+                    processAdminPanelStage();
+                    break;
+            }
+        }
+    }
+
     private static boolean login(String username, String password) {
 
         User foundUser = database.getUserByUsername(username);
@@ -137,39 +171,5 @@ public class Client {
                 break;
         }
         database.dataBaseStateSave();
-    }
-
-    /**
-     * Start program function. Choose a stage and calls a function for servicing client
-     *
-     * @param args arguments for program start (no args)
-     */
-    public static void main(String[] args) {
-
-        OutputFormatter.printPlainText("Welcome to Lichnoe Delo - Social network for important opinions " +
-                                        "this is Russian Social Network\n" +
-                                        "Our office address: Moscow, Lubyanskaya sq., 2");
-
-        while (true) {
-
-            switch (stage) {
-                case EXIT:
-                    OutputFormatter.printPlainText("Goodbye");
-                    System.exit(0);
-                    break;
-                case LOGIN:
-                    processLoginStage();
-                    break;
-                case FEED:
-                    processFeedStage();
-                    break;
-                case POST:
-                    processPostStage();
-                    break;
-                case ADMIN_PANEL:
-                    processAdminPanelStage();
-                    break;
-            }
-        }
     }
 }
