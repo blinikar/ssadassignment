@@ -3,7 +3,6 @@ package com.ssadprojects.ssadassignment;
 import java.util.List;
 import java.util.Locale;
 
-
 public class Client {
 
     private static final Database database = new Database();
