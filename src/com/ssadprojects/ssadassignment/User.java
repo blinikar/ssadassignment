@@ -2,6 +2,12 @@ package com.ssadprojects.ssadassignment;
 
 import java.io.Serializable;
 
+/**
+ * Class User implements system's user object
+ * If contains getters and setters.
+ * After creation of User, username can not be changed, because of unique of each User.
+ * Each user has username, password and URL of avatar photo.
+ */
 public class User implements Serializable {
 
     private final String username;

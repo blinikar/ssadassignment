@@ -4,6 +4,13 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Class Post implements the user's posts.
+ *
+ * It contains parameters with getters and setters
+ * Rating of the Post can be changed after creation, instead of content of the Post (String text)
+ * Each post is connected to unique user
+ */
 public class Post implements Serializable {
 
     private final Integer id;
