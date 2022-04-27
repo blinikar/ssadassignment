@@ -139,6 +139,11 @@ public class Client {
         database.dataBaseStateSave();
     }
 
+    /**
+     * Start program function. Choose a stage and calls a function for servicing client
+     *
+     * @param args arguments for program start (no args)
+     */
     public static void main(String[] args) {
 
         OutputFormatter.printPlainText("Welcome to Lichnoe Delo - Social network for important opinions " +
