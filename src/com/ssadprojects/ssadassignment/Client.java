@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Locale;
 
 
-public class Main {
+public class Client {
 
     private static final Database database = new Database();
     private static final Analyzer analyzer = new Analyzer();
