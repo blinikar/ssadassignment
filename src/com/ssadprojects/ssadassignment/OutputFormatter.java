@@ -5,10 +5,17 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.List;
 
+/**
+ * This class contains a features for standard console I/O
+ */
 public class OutputFormatter {
 
     private final static BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
+    /**
+     * Prints post with comments
+     * @param post post for print
+     */
     public static void printPostWithComments(Post post) {
 
         StringBuilder output = new StringBuilder();
@@ -34,6 +41,10 @@ public class OutputFormatter {
         System.out.println(output);
     }
 
+    /**
+     * Prints words list
+     * @param words words list to print
+     */
     public static void printWords(List<Word> words) {
 
         StringBuilder output = new StringBuilder();
@@ -46,6 +57,10 @@ public class OutputFormatter {
         System.out.println(output);
     }
 
+    /**
+     * Prints feed
+     * @param posts posts list to print
+     */
     public static void printFeed(List <Post> posts) {
 
         StringBuilder output = new StringBuilder();
@@ -61,6 +76,10 @@ public class OutputFormatter {
         System.out.println(output);
     }
 
+    /**
+     * Prints info about user
+     * @param user user to print info
+     */
     public static void printUserInfo(User user) {
 
         String output = "\nUSER INFO: \n\n";
@@ -76,6 +95,11 @@ public class OutputFormatter {
         System.out.println(output);
     }
 
+    /**
+     * Prints menu
+     * @param items menu items
+     * @return a user choice No
+     */
     public static int printMenu(String... items) {
 
         StringBuilder output = new StringBuilder();
@@ -98,11 +122,20 @@ public class OutputFormatter {
         return choice;
     }
 
+    /**
+     * Prints plain text
+     * @param text text to print
+     */
     public static void printPlainText(String text) {
 
         System.out.println("\n" + text + "\n");
     }
 
+    /**
+     * Prints input text field
+     * @param text text to print before the input
+     * @return user input
+     */
     public static String printInputText(String text) {
 
         System.out.println("\n" + text);

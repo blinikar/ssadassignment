@@ -3,7 +3,6 @@ package com.ssadprojects.ssadassignment;
 import java.util.List;
 import java.util.Locale;
 
-
 public class Client {
 
     private static final Database database = new Database();
@@ -140,6 +139,11 @@ public class Client {
         database.dataBaseStateSave();
     }
 
+    /**
+     * Start program function. Choose a stage and calls a function for servicing client
+     *
+     * @param args arguments for program start (no args)
+     */
     public static void main(String[] args) {
 
         OutputFormatter.printPlainText("Welcome to Lichnoe Delo - Social network for important opinions " +
@@ -150,6 +154,7 @@ public class Client {
 
             switch (stage) {
                 case EXIT:
+                    OutputFormatter.printPlainText("Goodbye");
                     System.exit(0);
                     break;
                 case LOGIN:
